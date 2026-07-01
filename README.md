@@ -113,6 +113,12 @@ Example 1: A poem written in clear structure that uses diverse vocabulary as opp
 
 Example 2: A text with punctuation used an an emoticon can be classified as AI for heavy usage of punctuation
 
+### Redirection:
+
+In my implementation of TTR, I encountered an issue where the text is short and since words are less likely repeat in a short entry, the TTR biases towards AI. Also, more important issue is that I originally thought AI repeats less than human-created content, but it turns out from the data AI repeats more often. In my experience, I've observed AI using more diverse vocabulary; this is a personal bias that lead me into a blind spot. 
+
+For now, I'm going treat short input (less than 2 sentences) as neutral (or uncertain = 0.5). 
+
 ## False positive
 A false positive would be labeling a human’s work as AI-generated. 
 
@@ -124,3 +130,8 @@ In our system, a false positive is much worse than a false negative.
 ## Known Limitations
 
 A poem written in clear structure that uses diverse vocabulary as opposed to a free-form poem might get misclassified as AI-generated. 
+
+## Test and Evaluation
+| Test | Content | Sematic Verdict | Stylometric Verdict | Combined Score | 
+| Test 1 | I provided Shakespeare's poem Blow, Blow, Thou Winter Wind | 0.0 (expected)
+| Test 2 | I generated a poem using Gemini | 0.2 (it should've been higher than 0.6) | 
