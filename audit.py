@@ -28,13 +28,17 @@ def _read_all() -> list:
         return []
 
 
+def _write_all(entries: list) -> None:
+    with open(LOG_PATH, "w", encoding="utf-8") as fh:
+        json.dump(entries, fh, indent=2)
+
+
 def append_entry(entry: dict) -> None:
     """Append one entry to the audit log."""
     with _lock:
         entries = _read_all()
         entries.append(entry)
-        with open(LOG_PATH, "w", encoding="utf-8") as fh:
-            json.dump(entries, fh, indent=2)
+        _write_all(entries)
 
 
 def read_recent(limit: int = 20) -> list:
@@ -42,3 +46,19 @@ def read_recent(limit: int = 20) -> list:
     with _lock:
         entries = _read_all()
     return entries[-limit:][::-1]
+
+
+def add_appeal(submission_id: str, appeal: dict) -> dict | None:
+    """Attach an appeal to a record and mark it "under review".
+
+    Returns the updated entry, or None if no record matches submission_id.
+    """
+    with _lock:
+        entries = _read_all()
+        for entry in entries:
+            if entry.get("submission_id") == submission_id:
+                entry["status"] = "under review"
+                entry.setdefault("appeals", []).append(appeal)
+                _write_all(entries)
+                return entry
+        return None
