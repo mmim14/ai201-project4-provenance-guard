@@ -52,7 +52,7 @@ Required feature:
 #### Appeal Flow:
     POST /appeal --text--> Status Update --text--> Audit Log --200 ok--> Response
 
-```mermaid.js
+```mermaid
 flowchart TD
     User([Creator / User])
 
