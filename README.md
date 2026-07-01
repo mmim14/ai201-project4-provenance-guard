@@ -20,3 +20,17 @@ For more transparency, I will display the score to the user and explain what the
 
 1. Semantic (detection signal)
 2. Stylometruc heuristics: vocabulary diversity, punctuation density, or sentence length variation
+
+## Rate Limiting
+    - uses Flask limiter
+    - the limits should allow real user to submit request without much interruption, prevent spam, and not flood the system and consume a lot of API calls.
+        - The model llama-3.3-70b-versatile that I'm using has 30 requests per minute limit for free tier. 
+        - Limit 1: 5 submission per minute sounds reasonable as a human won't probably enter more than 5 submission in a minute 
+        - Limit 2: 20 submissions per hour to protect my free-tier API limits and so other users could also use it without breaking the pipeline. Too many calls will return an 429 error ("Too Many Requests") from Groq. 
+
+## False positive
+A false positive would be labeling a human’s work as AI-generated. 
+
+A false negative would be labeling a AI-generated work human.
+
+In our system, a false positive is much worse than a false negative. 
