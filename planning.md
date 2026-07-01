@@ -109,6 +109,20 @@ Example 1: A poem written in clear structure that uses diverse vocabulary as opp
 
 Example 2: A text with punctuation used an an emoticon can be classified as AI for heavy usage of punctuation
 
+## AI Tool Plan
+
+M3 (submission endpoint + first signal): 
+I will provide the AI specs of Content Submission Endpoint section architecture specs and tell it to use the diagram as a reference to implement the endpoint using Flask route and then define an asynchronous function for semantic analysis using Groq. 
+
+I will verify the output by providing it a text in a known to be produced by human, for example, a poem by Shakepeare vs a poem I will generate using Gemini. 
+
+M4 (second signal + confidence scoring):
+I will provide the AI the arcchitecure specs and diagram to implement stylometric heuristics using Python modules, such as string, regular expression (re), and collections.Counter to calculate a confidence score. Then calculate the final combined scores using the weight in the specs. 
+
+M5 (production layer):
+I will provide the AI the arcchitecure specs and diagram to implement audit log into a JSON file, and appeal workflow. 
+
+
 
 
 
