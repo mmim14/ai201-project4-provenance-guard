@@ -104,6 +104,14 @@ flowchart TD
 
 ```
 
+### Edge Cases
+Example 1: A poem written in clear structure that uses diverse vocabulary as opposed to a free-form poem might get misclassified as AI-generated. 
+
+Example 2: A text with punctuation used an an emoticon can be classified as AI for heavy usage of punctuation
+
+
+
+
 
  
 
